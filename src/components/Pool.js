@@ -21,11 +21,11 @@ export default class Pool extends Component {
           height={this.props.data.nodeGraphicsInfo.height}
           style={{ fill: "white", stroke: "black", strokeWidth: 2 }}
         />
-        {this.props.data.workflowProcess.activities.map((e, i) => (
-          <Activity data={e} key={i} />
-        ))}
         {this.props.data.workflowProcess.transitions.map((e, i) => (
           <Transition data={e} key={i} />
+        ))}
+        {this.props.data.workflowProcess.activities.map((e, i) => (
+          <Activity data={e} key={i} />
         ))}
       </svg>
     );

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import ProccesBoard from "./components/ProcessBoard";
+import Principal from "./components/Principal";
 
-ReactDOM.render(<ProccesBoard />, document.getElementById("root"));
+ReactDOM.render(<Principal />, document.getElementById("root"));

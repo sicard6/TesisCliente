@@ -2,39 +2,21 @@ import React, { Component } from "react";
 import Pool from "./Pool";
 
 export default class ProcessBoard extends Component {
-  state = {
-    process: []
-  };
-
-  constructor(props) {
-    super();
-  }
-
-  componentDidMount() {
-    fetch("http://localhost:8500/prueba").then(x => {
-      x.json().then(y => {
-        this.setState({
-          process: y
-        });
-      });
-    });
-  }
-
   render() {
     let height = 0;
     let width = 0;
-    if (this.state.process.length !== 0)
-      for (let i = 0; i < this.state.process.pools.length; i++) {
-        const element = this.state.process.pools[i].nodeGraphicsInfo;
+    if (this.props.diagram.length !== 0)
+      for (let i = 0; i < this.props.diagram.pools.length; i++) {
+        const element = this.props.diagram.pools[i].nodeGraphicsInfo;
         height = element.height;
         width = element.width;
       }
 
     return (
       <div>
-        {this.state.process.length !== 0 ? (
+        {this.props.diagram.length !== 0 ? (
           <div>
-            <div>{this.state.process.name}</div>
+            <div>{this.props.diagram.name}</div>
             <div
               style={{
                 overflow: "auto",
@@ -44,7 +26,7 @@ export default class ProcessBoard extends Component {
               }}
             >
               <svg width={width + 50} height={height + 50}>
-                {this.state.process.pools.map((e, i) => (
+                {this.props.diagram.pools.map((e, i) => (
                   <Pool data={e} key={i} />
                 ))}
               </svg>
@@ -54,6 +36,7 @@ export default class ProcessBoard extends Component {
         ) : (
           <div>Loading...</div>
         )}
+        <input type="file" name="client-file" id="get-files" />
       </div>
     );
   }
