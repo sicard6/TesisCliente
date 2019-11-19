@@ -21,8 +21,16 @@ export default class FileSelector extends Component {
   onClickHandler = () => {
     const data = new FormData();
     data.append("file", this.state.selectedFile);
+    axios.post("http://localhost:8001/uploadXml/p3", data, {}).then(resp => {
+      //? en caso de que sea necesario
+    });
+
     axios.post("http://localhost:8500/MakeDiagram", data, {}).then(resp => {
-      console.log(resp.data);
+      axios
+        .post("http://localhost:8001/uploadJson/p3", resp.data)
+        .then(resp => {
+          //console.log("json", resp);
+        });
       this.props.SelectDiagram(resp.data);
     });
   };

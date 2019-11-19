@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FileSelector from "./FileSelector";
 import ProcessBoard from "./ProcessBoard";
+import Bpa from "./Bpa";
 
 export default class Principal extends Component {
   state = {
@@ -26,6 +27,9 @@ export default class Principal extends Component {
       <div>
         <div className="container text-center">
           <h1>Welcome to the BPA</h1>
+        </div>
+        <div>
+          <Bpa />
         </div>
         <div>
           <FileSelector SelectDiagram={this.SelectDiagram} />
