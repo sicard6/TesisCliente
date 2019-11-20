@@ -13,10 +13,10 @@ export default class ProcessBoard extends Component {
       }
 
     return (
-      <div>
+      <div className="card shadow p-2 mt-3">
         {this.props.diagram.length !== 0 ? (
           <div>
-            <div>{this.props.diagram.name}</div>
+            <h3>{this.props.diagram.name}</h3>
             <div
               style={{
                 overflow: "auto",
@@ -36,7 +36,6 @@ export default class ProcessBoard extends Component {
         ) : (
           <div>Loading...</div>
         )}
-        <input type="file" name="client-file" id="get-files" />
       </div>
     );
   }

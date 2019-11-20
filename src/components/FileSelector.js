@@ -7,7 +7,8 @@ export default class FileSelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedFile: null
+      selectedFile: null,
+      path: props.path
     };
   }
 
@@ -20,16 +21,24 @@ export default class FileSelector extends Component {
 
   onClickHandler = () => {
     const data = new FormData();
+    let splitted = this.props.path.split("\\");
+    let pasted = splitted[1];
+    for (let i = 2; i < splitted.length; i++) {
+      pasted += "-" + splitted[i];
+    }
     data.append("file", this.state.selectedFile);
-    axios.post("http://localhost:8001/uploadXml/p3", data, {}).then(resp => {
-      //? en caso de que sea necesario
-    });
+    axios
+      .post("http://localhost:8001/uploadXml/" + pasted, data, {})
+      .then(resp => {
+        //? en caso de que sea necesario
+      });
 
     axios.post("http://localhost:8500/MakeDiagram", data, {}).then(resp => {
       axios
-        .post("http://localhost:8001/uploadJson/p3", resp.data)
+        .post("http://localhost:8001/uploadJson/" + pasted, resp.data)
         .then(resp => {
           //console.log("json", resp);
+          this.props.refreshTree();
         });
       this.props.SelectDiagram(resp.data);
     });

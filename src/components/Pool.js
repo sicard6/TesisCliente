@@ -20,6 +20,8 @@ export default class Pool extends Component {
           width={this.props.data.nodeGraphicsInfo.width}
           height={this.props.data.nodeGraphicsInfo.height}
           style={{ fill: "white", stroke: "black", strokeWidth: 2 }}
+          rx="10"
+          ry="10"
         />
         {this.props.data.workflowProcess.transitions.map((e, i) => (
           <Transition data={e} key={i} />
